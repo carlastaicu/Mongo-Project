@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Employee = mongoose.model('Employee');
+const Project = mongoose.model('Project');
 
 const router = express.Router();
 
@@ -32,22 +33,34 @@ function insertRecord(req,res)
 
    employee.city = req.body.city;
 
-   employee.save((err,doc) => {
-       if(!err){
-        res.redirect('employee/list');
-       }
-       else{
-           
-          if(err.name == "ValidationError"){
-              handleValidationError(err,req.body);
-              res.render("employee/addOrEdit",{
-                  viewTitle:"Insert Employee",
-                  employee:req.body
-              })
-          }
-
-          console.log("Error occured during record insertion" + err);
-       }
+   employee.project = req.body.project;
+   
+   Project.findOne({name: employee.project}, (errProject, project) => {
+        if(project == null){
+            handleReferenceError(req.body);
+            res.render("employee/addOrEdit",{
+                viewTitle:"Insert Employee",
+                employee:req.body
+            });
+        }
+        else {
+            employee.save((err,doc) => {
+                if(!err){
+                    res.redirect('employee/list');
+                }
+                else{
+                    if(err.name == "ValidationError"){
+                        handleValidationError(err,req.body);
+                        res.render("employee/addOrEdit",{
+                            viewTitle:"Insert Employee",
+                            employee:req.body
+                        })
+                    }
+            
+                    console.log("Error occured during record insertion" + err);
+                }
+            })
+        }
    })
 }
 
@@ -122,6 +135,10 @@ function handleValidationError(err,body){
            break;
         }
     }
+}
+
+function handleReferenceError(body){
+    body['projectError'] = "Project does not exist";
 }
 
 module.exports = router;

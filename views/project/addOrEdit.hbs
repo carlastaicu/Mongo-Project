@@ -1,0 +1,21 @@
+<h3>{{viewTitle}}</h3>
+
+    <form action="/project" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{project._id}}">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="name" value="{{project.name}}" placeholder="Name">
+                        <div class="text-danger">
+                {{project.nameError}}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+            <a href="/project/list" class="btn btn-danger">
+                <i class="fa fa-list-alt"></i>View All
+            </a>
+        </div>
+
+
+    </form>
