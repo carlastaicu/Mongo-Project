@@ -11,6 +11,11 @@ var employeeSchema = new mongoose.Schema({
     },
     city:{
         type:String
+    },
+    project:{
+        type: mongoose.Schema.Types.String,
+        ref: 'Project',
+        required: true
     }
 })
 
@@ -20,4 +25,4 @@ employeeSchema.path('email').validate((val) => {
     return validator.validate(val);
 },'Invalid Email');
 
-mongoose.model('Employee',employeeSchema);
+module.exports = mongoose.model('Employee',employeeSchema);

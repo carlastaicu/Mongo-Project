@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const expressHandlebars = require('express-handlebars');
 
 const employeeController = require('./controller/employeeController');
+const projectController = require('./controller/projectController');
 
 var app = express();
 
@@ -33,3 +34,4 @@ app.listen(5000,() => {
 })
 
 app.use('/employee',employeeController);
+app.use('/project',projectController);
