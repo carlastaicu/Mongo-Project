@@ -1,0 +1,28 @@
+<h3>{{viewTitle}}</h3>
+
+    <form action="/team" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{team._id}}">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" value="{{team.name}}" placeholder="Name">
+                        <div class="text-danger">
+                {{team.nameError}}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Number Of Employees</label>
+                <input type="number" name="nrOfEmployees" placeholder="Number of Employees" value="{{team.nrOfEmployees}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+            <a href="/team/list" class="btn btn-danger">
+                <i class="fa fa-list-alt"></i>View All
+            </a>
+        </div>
+
+
+    </form>

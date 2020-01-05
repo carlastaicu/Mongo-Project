@@ -11,6 +11,7 @@ const expressHandlebars = require('express-handlebars');
 const employeeController = require('./controller/employeeController');
 const projectController = require('./controller/projectController');
 const positionController = require('./controller/positionController');
+const teamController = require('./controller/teamController');
 
 var app = express();
 
@@ -37,3 +38,4 @@ app.listen(5000,() => {
 app.use('/employee',employeeController);
 app.use('/project',projectController);
 app.use('/position',positionController);
+app.use('/team',teamController);
