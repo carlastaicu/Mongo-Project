@@ -13,6 +13,7 @@ const projectController = require('./controller/projectController');
 const positionController = require('./controller/positionController');
 const teamController = require('./controller/teamController');
 const headquarterController = require('./controller/headquarterController');
+const departmentController = require('./controller/departmentController');
 
 var app = express();
 
@@ -41,3 +42,4 @@ app.use('/project',projectController);
 app.use('/position',positionController);
 app.use('/team',teamController);
 app.use('/headquarter',headquarterController);
+app.use('/department',departmentController);

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const Project = mongoose.model('Project');
 // const Company = mongoose.model('Company');
-// const Department = mongoose.model('Department');
+const Department = mongoose.model('Department');
 const Team = mongoose.model('Team');
 
 const router = express.Router();
@@ -44,11 +44,11 @@ function insertRecord(req,res)
              handleReferenceError(req.body, company, department, team);
              res.render("project/addOrEdit",{
                  viewTitle:"Insert Project",
-                 employee:req.body
+                 project:req.body
              });
          }
          else {
-             employee.save((err,doc) => {
+             project.save((err,doc) => {
                  if(!err){
                      res.redirect('project/list');
                  }
@@ -57,10 +57,9 @@ function insertRecord(req,res)
                          handleValidationError(err,req.body);
                          res.render("project/addOrEdit",{
                              viewTitle:"Insert Project",
-                             employee:req.body
+                             project:req.body
                          })
                      }
-             
                      console.log("Error occured during record insertion" + err);
                  }
              })

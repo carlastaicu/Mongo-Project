@@ -1,0 +1,38 @@
+<h3>{{viewTitle}}</h3>
+
+    <form action="/department" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{department._id}}">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" value="{{department.name}}" placeholder="Name">
+                        <div class="text-danger">
+                {{department.nameError}}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="Company" value="{{department.company}}" class="form-control">
+                <div class="text-danger">
+                    {{department.companyError}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Number Of Employees</label>
+                <input type="number" name="nrOfEmployees" placeholder="Number of Employees" value="{{department.nrOfEmployees}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+            <a href="/department/list" class="btn btn-danger">
+                <i class="fa fa-list-alt"></i>View All
+            </a>
+        </div>
+
+
+    </form>
