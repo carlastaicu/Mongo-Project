@@ -1,0 +1,37 @@
+<h3>
+    <a href="/headquarter" class="btn btn-danger">
+        <i class="fa fa-plus"> </i> Create New
+    </a>
+    Headquarter List
+</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>City</th>
+            <th>Street Address</th>
+            <th>Area</th>
+            <th>Built</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+            <tr>
+                <td>{{this.city}}</td>
+                <td>{{this.streetAddress}}</td>
+                <td>{{this.area}}</td>
+                <td>{{this.built}}</td>
+                <td>
+                    <a href="/headquarter/{{this._id}}">
+                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    </a>
+                    <a href="/headquarter/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true">
+                         
+                        </i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

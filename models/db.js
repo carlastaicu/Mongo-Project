@@ -16,3 +16,4 @@ require('./employee.model');
 require('./project.model');
 require('./position.model');
 require('./team.model');
+require('./headquarter.model');
