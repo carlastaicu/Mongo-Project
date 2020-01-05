@@ -18,3 +18,4 @@ require('./position.model');
 require('./team.model');
 require('./headquarter.model');
 require('./department.model');
+require('./contactData.model');

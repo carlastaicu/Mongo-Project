@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Department = mongoose.model('Department');
-const Company = mongoose.model('Company');
+//const Company = mongoose.model('Company');
 const router = express.Router();
 
 router.get("/",(req,res) => {
