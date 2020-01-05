@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const Employee = mongoose.model('Employee');
 const Project = mongoose.model('Project');
+const Position = mongoose.model('Position');
 
 const router = express.Router();
 
@@ -34,33 +35,37 @@ function insertRecord(req,res)
    employee.city = req.body.city;
 
    employee.project = req.body.project;
+
+   employee.position = req.body.position;
    
    Project.findOne({name: employee.project}, (errProject, project) => {
-        if(project == null){
-            handleReferenceError(req.body);
-            res.render("employee/addOrEdit",{
-                viewTitle:"Insert Employee",
-                employee:req.body
-            });
-        }
-        else {
-            employee.save((err,doc) => {
-                if(!err){
-                    res.redirect('employee/list');
-                }
-                else{
-                    if(err.name == "ValidationError"){
-                        handleValidationError(err,req.body);
-                        res.render("employee/addOrEdit",{
-                            viewTitle:"Insert Employee",
-                            employee:req.body
-                        })
+       Position.findOne({name: employee.position}, (errPosition, position) => {
+            if(project == null || position == null){
+                handleReferenceError(req.body, project, position);
+                res.render("employee/addOrEdit",{
+                    viewTitle:"Insert Employee",
+                    employee:req.body
+                });
+            }
+            else {
+                employee.save((err,doc) => {
+                    if(!err){
+                        res.redirect('employee/list');
                     }
-            
-                    console.log("Error occured during record insertion" + err);
-                }
-            })
-        }
+                    else{
+                        if(err.name == "ValidationError"){
+                            handleValidationError(err,req.body);
+                            res.render("employee/addOrEdit",{
+                                viewTitle:"Insert Employee",
+                                employee:req.body
+                            })
+                        }
+                
+                        console.log("Error occured during record insertion" + err);
+                    }
+                })
+            }
+       })
    })
 }
 
@@ -137,8 +142,11 @@ function handleValidationError(err,body){
     }
 }
 
-function handleReferenceError(body){
-    body['projectError'] = "Project does not exist";
+function handleReferenceError(body, project, position){
+    if(project == null)
+        body['projectError'] = "Project does not exist";
+    if(position == null)
+        body['positionError'] = "Position does not exist";
 }
 
 module.exports = router;

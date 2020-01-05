@@ -16,6 +16,11 @@ var employeeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.String,
         ref: 'Project',
         required: true
+    },
+    position:{
+        type: mongoose.Schema.Types.String,
+        ref: 'Position',
+        required: true
     }
 })
 

@@ -14,3 +14,4 @@ mongoose.connect(url,
 
 require('./employee.model');
 require('./project.model');
+require('./position.model');

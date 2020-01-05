@@ -1,5 +1,5 @@
 <h3>
-    <a href="/project" class="btn btn-danger">
+    <a href="/position" class="btn btn-danger">
         <i class="fa fa-plus"> </i> Create New
     </a>
     Project List
@@ -8,9 +8,7 @@
     <thead>
         <tr>
             <th>Name</th>
-            <td>Company</td>
-            <td>Department</td>
-            <td>Team</td>
+            <th>Salary</th>
             <th></th>
         </tr>
     </thead>
@@ -18,14 +16,12 @@
         {{#each list}}
             <tr>
                 <td>{{this.name}}</td>
-                <td>{{this.company}}</td>
-                <td>{{this.department}}</td>
-                <td>{{this.team}}</td>
+                <td>{{this.salary}}</td>
                 <td>
-                    <a href="/project/{{this._id}}">
+                    <a href="/position/{{this._id}}">
                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                     </a>
-                    <a href="/project/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
+                    <a href="/position/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
                         <i class="fa fa-trash fa-lg" aria-hidden="true">
                          
                         </i>

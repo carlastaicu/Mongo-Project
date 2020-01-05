@@ -3,10 +3,38 @@
     <form action="/project" method="POST" autocomplete="off">
         <input type="hidden" name="_id" value="{{project._id}}">
         <div class="form-group">
-            <label>Full Name</label>
+            <label>Name</label>
             <input type="text" class="form-control" name="name" value="{{project.name}}" placeholder="Name">
                         <div class="text-danger">
                 {{project.nameError}}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="Company" value="{{project.company}}" class="form-control">
+                <div class="text-danger">
+                    {{project.companyError}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Department</label>
+                <input type="text" name="department" placeholder="Department" value="{{project.department}}" class="form-control">
+                <div class="text-danger">
+                    {{project.departmentError}}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Team</label>
+                <input type="text" name="team" placeholder="Team" value="{{project.team}}" class="form-control">
+                <div class="text-danger">
+                    {{project.projectError}}
+                </div>
             </div>
         </div>
 
@@ -16,6 +44,5 @@
                 <i class="fa fa-list-alt"></i>View All
             </a>
         </div>
-
 
     </form>

@@ -3,6 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Project = mongoose.model('Project');
+// const Company = mongoose.model('Company');
+// const Department = mongoose.model('Department');
+// const Team = mongoose.model('Team');
 
 const router = express.Router();
 
@@ -28,23 +31,43 @@ function insertRecord(req,res)
 
    project.name = req.body.name;
 
-   project.save((err,doc) => {
-       if(!err){
-        res.redirect('project/list');
-       }
-       else{
-           
-          if(err.name == "ValidationError"){
-              handleValidationError(err,req.body);
-              res.render("project/addOrEdit",{
-                  viewTitle:"Insert Project",
-                  project:req.body
-              })
-          }
+   project.company = req.body.company;
 
-          console.log("Error occured during record insertion" + err);
-       }
-   })
+   project.department = req.body.department;
+
+   project.team = req.body.team;
+
+   Company.findOne({name: project.company}, (errCompany, company) => {
+    Department.findOne({name: project.department}, (errDepartment, department) => {
+      Team.findOne({name: project.team}, (errTeam, team) => {
+         if(company == null || department == null || team == null){
+             handleReferenceError(req.body, company, department, team);
+             res.render("project/addOrEdit",{
+                 viewTitle:"Insert Project",
+                 employee:req.body
+             });
+         }
+         else {
+             employee.save((err,doc) => {
+                 if(!err){
+                     res.redirect('project/list');
+                 }
+                 else{
+                     if(err.name == "ValidationError"){
+                         handleValidationError(err,req.body);
+                         res.render("project/addOrEdit",{
+                             viewTitle:"Insert Project",
+                             employee:req.body
+                         })
+                     }
+             
+                     console.log("Error occured during record insertion" + err);
+                 }
+             })
+         }
+    })
+    })
+    })
 }
 
 function updateRecord(req,res)
@@ -113,6 +136,15 @@ function handleValidationError(err,body){
            break;
         }
     }
+}
+
+function handleReferenceError(body, company, department, team){
+    if(company == null)
+        body['companyError'] = "Company does not exist";
+    if(department == null)
+        body['departmentError'] = "Department does not exist";
+    if(team == null)
+        body['teamError'] = "Team does not exist";
 }
 
 module.exports = router;
