@@ -1,0 +1,44 @@
+<h3>{{viewTitle}}</h3>
+
+    <form action="/company" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{company._id}}">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" value="{{company.name}}" placeholder="Name">
+                        <div class="text-danger">
+                {{company.nameError}}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Stock Market Price</label>
+                <input type="number" name="stockMarketPrice" placeholder="Stock Market Price" value="{{company.stockMarketPrice}}" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Headquarter</label>
+                <input type="text" name="headquarter" placeholder="Headquarter" value="{{company.headquarter}}" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>CEO</label>
+                <input type="text" name="ceo" placeholder="CEO" value="{{company.ceo}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Contact Data</label>
+            <input type="text" class="form-control" name="contactData" value="{{company.contactData}}" placeholder="Contact Data">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+            <a href="/company/list" class="btn btn-danger">
+                <i class="fa fa-list-alt"></i>View All
+            </a>
+        </div>
+
+    </form>

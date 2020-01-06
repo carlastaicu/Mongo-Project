@@ -1,0 +1,39 @@
+<h3>
+    <a href="/company" class="btn btn-danger">
+        <i class="fa fa-plus"> </i> Create New
+    </a>
+    Company List
+</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Stock Market Price</th>
+            <th>Headquarter</th>
+            <th>CEO</th>
+            <th>Contact Data</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.stockMarketPrice}}</td>
+                <td>{{this.headquarter}}</td>
+                <td>{{this.ceo}}</td>
+                <td>{{this.contactData}}</td>
+                <td>
+                    <a href="/company/{{this._id}}">
+                        <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    </a>
+                    <a href="/company/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true">
+                         
+                        </i>
+                    </a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
