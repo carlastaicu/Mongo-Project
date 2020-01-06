@@ -7,6 +7,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>Name</th>
             <th>City</th>
             <th>Street Address</th>
             <th>Area</th>
@@ -17,6 +18,7 @@
     <tbody>
         {{#each list}}
             <tr>
+                <td>{{this.name}}</td>
                 <td>{{this.city}}</td>
                 <td>{{this.streetAddress}}</td>
                 <td>{{this.area}}</td>

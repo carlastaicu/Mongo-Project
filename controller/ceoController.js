@@ -2,13 +2,13 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
-const Headquarter = mongoose.model('Headquarter');
+const CEO = mongoose.model('CEO');
 
 const router = express.Router();
 
 router.get("/",(req,res) => {
-    res.render("headquarter/addOrEdit",{
-        viewTitle:"Insert Headquarter"
+    res.render("ceo/addOrEdit",{
+        viewTitle:"Insert CEO"
     })
 })
 
@@ -24,29 +24,27 @@ router.post("/",(req,res) => {
 
 function insertRecord(req,res)
 {
-   var headquarter = new Headquarter();
+   var ceo = new CEO();
 
-   headquarter.name = req.body.name;
+   ceo.name = req.body.name;
 
-   headquarter.city = req.body.city;
+   ceo.cityOfBirth = req.body.cityOfBirth;
 
-   headquarter.streetAddress = req.body.streetAddress;
+   ceo.yearsInOffice = req.body.yearsInOffice;
 
-   headquarter.area = req.body.area;
+   ceo.netWorth = req.body.netWorth;
 
-   headquarter.built = req.body.built;
-
-   headquarter.save((err,doc) => {
+   ceo.save((err,doc) => {
        if(!err){
-        res.redirect('headquarter/list');
+        res.redirect('ceo/list');
        }
        else{
            
           if(err.name == "ValidationError"){
               handleValidationError(err,req.body);
-              res.render("headquarter/addOrEdit",{
-                  viewTitle:"Insert Headquarter",
-                  headquarter:req.body
+              res.render("ceo/addOrEdit",{
+                  viewTitle:"Insert CEO",
+                  ceo:req.body
               })
           }
 
@@ -57,17 +55,17 @@ function insertRecord(req,res)
 
 function updateRecord(req,res)
 {
-    Headquarter.findOneAndUpdate({_id:req.body._id,},req.body,{new:true},(err,doc) => {
+    CEO.findOneAndUpdate({_id:req.body._id,},req.body,{new:true},(err,doc) => {
         if(!err){
-            res.redirect('headquarter/list');
+            res.redirect('ceo/list');
         }
         else{
             if(err.name == "ValidationError")
             {
                 handleValidationError(err,req.body);
-                res.render("headquarter/addOrEdit",{
-                    viewTitle:'Update Headquarter',
-                    headquarter:req.body
+                res.render("ceo/addOrEdit",{
+                    viewTitle:'Update CEO',
+                    ceo:req.body
                 });
             }
             else{
@@ -78,9 +76,10 @@ function updateRecord(req,res)
 }
 
 router.get('/list',(req,res) => {
-    Headquarter.find((err,docs) => {
+
+    CEO.find((err,docs) => {
         if(!err) {
-            res.render("headquarter/list",{
+            res.render("ceo/list",{
                list:docs
             })
         }
@@ -88,20 +87,20 @@ router.get('/list',(req,res) => {
 })
 
 router.get('/:id',(req,res) => {
-    Headquarter.findById(req.params.id,(err,doc) => {
+    CEO.findById(req.params.id,(err,doc) => {
         if(!err){
-            res.render("headquarter/addOrEdit",{
-                viewTitle: "Update Headquarter",
-                headquarter: doc
+            res.render("ceo/addOrEdit",{
+                viewTitle: "Update CEO",
+                ceo: doc
             })
         }
     })
 })
 
 router.get('/delete/:id',(req,res) => {
-    Headquarter.findByIdAndRemove(req.params.id,(err,doc) => {
+    CEO.findByIdAndRemove(req.params.id,(err,doc) => {
         if(!err){
-            res.redirect('/headquarter/list');
+            res.redirect('/ceo/list');
         }
         else{
             console.log("An error occured during the Delete Process" + err);

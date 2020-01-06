@@ -1,0 +1,42 @@
+<h3>{{viewTitle}}</h3>
+
+    <form action="/ceo" method="POST" autocomplete="off">
+        <input type="hidden" name="_id" value="{{ceo._id}}">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="name" value="{{ceo.name}}" placeholder="Full Name">
+                        <div class="text-danger">
+                {{ceo.nameError}}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>City of Birth</label>
+                <input type="text" name="cityOfBirth" placeholder="City of Birth" value="{{ceo.cityOfBirth}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Years in Office</label>
+                <input type="number" name="yearsInOffice" placeholder="Years in Office" value="{{ceo.yearsInOffice}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group md-6">
+                <label>Net Worth</label>
+                <input type="number" name="netWorth" placeholder="Net Worth" value="{{ceo.nrOfEmployees}}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database"></i>Submit</button>
+            <a href="/ceo/list" class="btn btn-danger">
+                <i class="fa fa-list-alt"></i>View All
+            </a>
+        </div>
+
+
+    </form>

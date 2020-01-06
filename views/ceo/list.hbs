@@ -1,14 +1,16 @@
 <h3>
-    <a href="/position" class="btn btn-danger">
+    <a href="/ceo" class="btn btn-danger">
         <i class="fa fa-plus"> </i> Create New
     </a>
-    Position List
+    CEO List
 </h3>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Salary</th>
+            <th>Full Name</th>
+            <th>City Of Birth</th>
+            <th>Years In Office</th>
+            <th>Net Worth</th>
             <th></th>
         </tr>
     </thead>
@@ -16,12 +18,14 @@
         {{#each list}}
             <tr>
                 <td>{{this.name}}</td>
-                <td>{{this.salary}}</td>
+                <td>{{this.cityOfBirth}}</td>
+                <td>{{this.yearsInOffice}}</td>
+                <td>{{this.netWorth}}</td>
                 <td>
-                    <a href="/position/{{this._id}}">
+                    <a href="/ceo/{{this._id}}">
                         <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                     </a>
-                    <a href="/position/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
+                    <a href="/ceo/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record?');">
                         <i class="fa fa-trash fa-lg" aria-hidden="true">
                          
                         </i>

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const Company = mongoose.model('Company');
 const Headquarter = mongoose.model('Headquarter');
-//const CEO = mongoose.model('CEO');
+const CEO = mongoose.model('CEO');
 const ContactData = mongoose.model('ContactData');
 
 const router = express.Router();

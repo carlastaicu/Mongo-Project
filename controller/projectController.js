@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Project = mongoose.model('Project');
-// const Company = mongoose.model('Company');
+const Company = mongoose.model('Company');
 const Department = mongoose.model('Department');
 const Team = mongoose.model('Team');
 

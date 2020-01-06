@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 var headquarterSchema = new mongoose.Schema({
+    name:{
+        type:String
+    },
     city:{
         type:String
     },
